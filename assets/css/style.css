@@ -1,0 +1,60 @@
+h1 {
+    text-align: center;
+    padding: 20px;
+    background: navy;
+    color: white;
+    border-radius: 5px;
+}
+h3 {
+    padding: 10px;
+    background: navy;
+    color: white;
+    border-radius: 5px;
+}
+p.card-text {
+    font-size: 1.1rem;
+}
+.card-header {
+    font-size: 2rem;
+}
+#submit {
+    background-color: lightgrey;
+    padding: 2px;
+    display: inline-block;
+    padding: 5px;
+ }
+ 
+ #clear {
+    background-color: lightgrey;
+    padding: 2px;
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+ }
+ 
+ .search {
+    display: inline-block;
+    padding: 20px;
+    
+ }
+ 
+ .trash {
+    display: inline-block;
+ }
+ 
+ .jumbotron2 {
+    padding-bottom: 20px;
+ }
+ .card.border-dark.mb-3 {
+    margin-bottom: 20px;
+ }
+ #btn-default.dropdown-toggle {
+     width: 100%;
+     text-align: left;
+ }
+
+
+/*Add CommentCollapse 
+Message Input
+
+Message @Jens*/
