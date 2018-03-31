@@ -25,6 +25,36 @@
         </div>
         <div class="card-body">
           <!-- Form goes here -->
+          <form>
+            <div class="form-group">
+              <!-- Search -->
+              <label for="search-field">Search Term:</label>
+              <input type="text" class="form-control" id="search-field" placeholder="search here">
+            </div>
+            <div class="form-group">
+              <!-- Number of results -->
+              <label for="num-results">Number of Records to Retrieve:</label>
+              <select class="form-control" id="num-results">
+                  <option value="1">1</option>
+                  <!-- 5 is set as default -->
+                  <option value="5" selected="">5</option>
+                  <option value="10">10</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <!-- Start year - optional -->
+              <label for="start-field">Start Year (Optional):</label>
+              <input type="text" class="form-control" id="start-field">
+            </div>
+            <div class="form-group">
+              <!-- End year - optional -->
+              <label for="end-field">End Year (Optional):</label>
+              <input type="text" class="form-control" id="end-field">
+            </div>
+
+            <button type="submit" class="btn btn-default" id="run-search"><i class="fa fa-search"></i> Search</button>
+            <button type="button" class="btn btn-default" id="clear-all"><i class="fa fa-trash"></i> Clear Results</button>
+          </form>
 
         </div>
       </div>
@@ -33,14 +63,14 @@
           <div class="card-header">
             <strong>Top Articles</strong>
           </div>
-          <div class="card-body">
+          <div class="card-body" id="article-card">
             <!-- Search results go here -->
   
           </div>
         </div>
 
     </div>
-s
+
     
     <!-- Jquery link -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

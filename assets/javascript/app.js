@@ -3,12 +3,16 @@ var searchAPI = {
 
     searchNYT: function(qy, r, sy, ey) {
         this.results = r;
-
+        //console.log(qy + " - " + r + " - " + sy + " - " + ey);
+        
         if (sy === undefined && ey === undefined) {
+
             this.searchWOD(qy);
         } else if (ey === undefined) {
+
             this.searchWS(qy, sy);
         } else {
+
             this.searchWSWE(qy, sy, ey);
         }
 
@@ -30,6 +34,7 @@ var searchAPI = {
     },
     // Search with start date
     searchWS: function(qy, sy) {
+
         var startYear = sy + "0101";
         var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
         url += '?' + $.param({
@@ -41,11 +46,12 @@ var searchAPI = {
           url: url,
           method: 'GET',
         }).then(function(response){
-            console.log(response);
+            searchAPI.drawResults(response);
         });
     },
     // Search with start date and end date
     searchWSWE: function(qy, sy, ey) {
+
         var startYear = sy + "0101";
         var endYear = ey + "0101";
         var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
@@ -59,12 +65,15 @@ var searchAPI = {
           url: url,
           method: 'GET',
         }).then(function(response){
-            console.log(response);
+            console.log(url);
+            searchAPI.drawResults(response);           
         });
     },
 
     drawResults: function(obj) {
-        var resp = obj.response.docs;        
+        var resp = obj.response.docs; 
+        console.log(resp);
+               
         
         var resultsDiv = $("<div>");
         resultsDiv.addClass("results-main");
@@ -100,17 +109,42 @@ var searchAPI = {
             resultsDiv.append(articleDiv);
             
         }
-        $("#results-main").append(resultsDiv);
+
+        $("#article-card").append(resultsDiv);
 
     }
 
 }
 
-searchAPI.searchNYT("hello", 5);
-
-$("#submit").on("click", function(event) {
+// Search Button Event
+$("#run-search").on("click", function(event) {
     event.preventDefault();
-    console.log(this);
+    $("#article-card").empty();
+
+    var searchTerm = $("#search-field").val().trim();
+    var resultsVal = $("#num-results").val();
+    var startYearVal = $("#start-field").val();
+    var endYearVal = $("#end-field").val();
+
+    if(parseInt(endYearVal)) {
+
+        searchAPI.searchNYT(searchTerm, resultsVal, startYearVal, endYearVal);
+    } else if(parseInt(startYearVal)) {
+
+        searchAPI.searchNYT(searchTerm, resultsVal, startYearVal);
+    } else {
+
+        searchAPI.searchNYT(searchTerm, resultsVal);
+    }
+    
 });
 
+// Clear Button Event
+$("#clear-all").on("click", function(){
+    $("#article-card").empty();
 
+    searchTerm = "";
+    resultsVal = "";
+    startYearVal = "";
+    endYearVal = "";
+});
